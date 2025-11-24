@@ -81,8 +81,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../CommonLibsMSVS/$(Configuration);../CommonLibsMSVS/Codecs/$(Configuration);../3rdPart/OpenSSL/Win64/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);System.lib;Multimedia.lib;mfplat.lib;mf.lib;mfuuid.lib;mfreadwrite.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../3rdPart/OpenSSL/Win64/lib;../CommonLibsMSVS/$(Configuration);../CommonLibsMSVS/Codecs/$(Configuration);../3rdPart/OpenSSL/Win64/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);System.lib;Multimedia.lib;mfplat.lib;wmcodecdspuuid.lib;mf.lib;mfuuid.lib;mfreadwrite.lib;H264Decoder.lib;openssl.lib;libcrypto.lib;libssl.lib;Crypt32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,8 +98,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../CommonLibsMSVS/$(Configuration);../CommonLibsMSVS/Codecs/$(Configuration);../3rdPart/OpenSSL/Win64/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);System.lib;Multimedia.lib;mfplat.lib;mf.lib;mfuuid.lib;mfreadwrite.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../3rdPart/OpenSSL/Win64/lib;../CommonLibsMSVS/$(Configuration);../CommonLibsMSVS/Codecs/$(Configuration);../3rdPart/OpenSSL/Win64/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);System.lib;Multimedia.lib;mfplat.lib;wmcodecdspuuid.lib;mf.lib;mfuuid.lib;mfreadwrite.lib;H264Decoder.lib;openssl.lib;libcrypto.lib;libssl.lib;Crypt32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -113,8 +113,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../CommonLibsMSVS/$(Configuration);../CommonLibsMSVS/Codecs/$(Configuration);../3rdPart/OpenSSL/Win64/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);System.lib;Multimedia.lib;mfplat.lib;mf.lib;mfuuid.lib;mfreadwrite.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../3rdPart/OpenSSL/Win64/lib;../CommonLibsMSVS/$(Configuration);../CommonLibsMSVS/Codecs/$(Configuration);../3rdPart/OpenSSL/Win64/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);System.lib;Multimedia.lib;mfplat.lib;wmcodecdspuuid.lib;mf.lib;mfuuid.lib;mfreadwrite.lib;H264Decoder.lib;openssl.lib;libcrypto.lib;libssl.lib;Crypt32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,8 +130,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../CommonLibsMSVS/$(Configuration);../CommonLibsMSVS/Codecs/$(Configuration);../3rdPart/OpenSSL/Win64/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);System.lib;Multimedia.lib;mfplat.lib;mf.lib;mfuuid.lib;mfreadwrite.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../3rdPart/OpenSSL/Win64/lib;../CommonLibsMSVS/$(Configuration);../CommonLibsMSVS/Codecs/$(Configuration);../3rdPart/OpenSSL/Win64/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);System.lib;Multimedia.lib;mfplat.lib;wmcodecdspuuid.lib;mf.lib;mfuuid.lib;mfreadwrite.lib;H264Decoder.lib;openssl.lib;libcrypto.lib;libssl.lib;Crypt32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
