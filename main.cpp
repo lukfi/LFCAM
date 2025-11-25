@@ -5,6 +5,7 @@
 #include "utils/stringutils.h"
 
 #include "fs/file.h"
+#include "RequestHandler.h"
 
 /********** DEBUG SETUP **********/
 #define ENABLE_SDEBUG
@@ -40,16 +41,19 @@ public:
     }
     static shared_ptr<UniDecoder> Get(LF::graphic::ColorSpace_t inputColorspace, uint32_t width, uint32_t height)
     {
+        SDEB("Creating UniDecoder for input format: %s", str(inputColorspace).c_str());
+
         if (inputColorspace == LF::graphic::ColorSpace_t::H264)
         {
             shared_ptr<UniDecoder> ret(new UniDecoder(LF::graphic::ColorSpace_t::H264));
             ret->Configure(width, height, LF::graphic::ColorSpace_t::NV12);
             return ret;
         }
-        else if (inputColorspace == LF::graphic::ColorSpace_t::NV12)
+        else if (inputColorspace == LF::graphic::ColorSpace_t::NV12 ||
+                 inputColorspace == LF::graphic::ColorSpace_t::YUYV422)
         {
-            shared_ptr<UniDecoder> ret(new UniDecoder(LF::graphic::ColorSpace_t::NV12));
-            ret->Configure(width, height, LF::graphic::ColorSpace_t::NV12);
+            shared_ptr<UniDecoder> ret(new UniDecoder(inputColorspace));
+            ret->Configure(width, height, inputColorspace);
             return ret;
         }
         else if (inputColorspace == LF::graphic::ColorSpace_t::MJPG)
@@ -57,6 +61,10 @@ public:
             shared_ptr<UniDecoder> ret(new UniDecoder(LF::graphic::ColorSpace_t::MJPG));
             ret->Configure(width, height, LF::graphic::ColorSpace_t::MJPG);
             return ret;
+        }
+        else
+        {
+            SERR("Can't create a decoder for format: %s", str(inputColorspace).c_str());
         }
         return nullptr;
     }
@@ -68,9 +76,10 @@ public:
         {
             ret = mVideoDecoder->FeedRawData(data, dataSize);
         }
-        else if (mInputColorspace == LF::graphic::ColorSpace_t::NV12)
+        else if (mInputColorspace == LF::graphic::ColorSpace_t::NV12 ||
+                 mInputColorspace == LF::graphic::ColorSpace_t::YUYV422)
         {
-            LF::graphic::RawImage ri(mWidth, mHeight, LF::graphic::ColorSpace_t::NV12, data);
+            LF::graphic::RawImage ri(mWidth, mHeight, mInputColorspace, data);
             OnFrame(ri);
             ret = true;
         }
@@ -195,8 +204,12 @@ void OnNewFrame(LF::video::VideoDevice* dev, std::shared_ptr<LF::graphic::RawDat
     }
 }
 
+RequestHandler gHandler;
+
 int main()
 {
+    BasicWebServer gServer(8080, BasicWebServer::NO_Server, &gHandler);
+
     gWCV.Start(true, true);
     gWCV.ShowImage("D:/workspace/Common/Utils/WillowCmdVideo/graphics/screen.jpg");
     LF::threads::IOThread t;
@@ -212,14 +225,15 @@ int main()
 
     //gDev = LF::video::VideoDevice::GetVideoDevice(0, 1);
     //gDev = LF::video::VideoDevice::GetVideoDevice(1, 12); // CAM 1080p NV12
-    gDev = LF::video::VideoDevice::GetVideoDevice(1, 13); // CAM 1080p MJPG
+    //gDev = LF::video::VideoDevice::GetVideoDevice(1, 13); // CAM 1080p MJPG
+    //gDev = LF::video::VideoDevice::GetVideoDevice(1, 40); // CAM 1080p  YUYV
 
-    if (gDev)
-    {
-        gDecoder = UniDecoder::Get(gDev->GetConfiguredFormat().colorspace, gDev->GetConfiguredFormat().resolution.width, gDev->GetConfiguredFormat().resolution.height);
-        CONNECT(gDev->NEW_FRAME_AVAILABLE_RAW, OnNewFrame);
-        gDev->Start();
-    }
+    //if (gDev)
+    //{
+    //    gDecoder = UniDecoder::Get(gDev->GetConfiguredFormat().colorspace, gDev->GetConfiguredFormat().resolution.width, gDev->GetConfiguredFormat().resolution.height);
+    //    CONNECT(gDev->NEW_FRAME_AVAILABLE_RAW, OnNewFrame);
+    //    gDev->Start();
+    //}
 
     t.Join();
 }

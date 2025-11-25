@@ -135,7 +135,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Common\Utils\BasicWebServer\basicwebserver.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RequestHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Common\Utils\BasicWebServer\basicwebserver.h" />
+    <ClInclude Include="RequestHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

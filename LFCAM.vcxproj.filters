@@ -13,10 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\BasicWebServer">
+      <UniqueIdentifier>{1515775a-9a9e-4da2-98ca-a91104677cd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BasicWebServer">
+      <UniqueIdentifier>{fb530fa4-5811-4af8-a624-58c11ad0ba27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Common\Utils\BasicWebServer\basicwebserver.cpp">
+      <Filter>Source Files\BasicWebServer</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Common\Utils\BasicWebServer\basicwebserver.h">
+      <Filter>Header Files\BasicWebServer</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
