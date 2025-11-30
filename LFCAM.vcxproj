@@ -138,10 +138,13 @@
     <ClCompile Include="..\Common\Utils\BasicWebServer\basicwebserver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RequestHandler.cpp" />
+    <ClCompile Include="VideoController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\Utils\BasicWebServer\basicwebserver.h" />
     <ClInclude Include="RequestHandler.h" />
+    <ClInclude Include="UniDecoder.h" />
+    <ClInclude Include="VideoController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

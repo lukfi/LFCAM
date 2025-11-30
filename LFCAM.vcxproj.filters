@@ -30,12 +30,21 @@
     <ClCompile Include="RequestHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VideoController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\Utils\BasicWebServer\basicwebserver.h">
       <Filter>Header Files\BasicWebServer</Filter>
     </ClInclude>
     <ClInclude Include="RequestHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UniDecoder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
