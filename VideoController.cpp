@@ -10,7 +10,7 @@ VideoController* gC = nullptr;
 void OnWCVConnected()
 {
     SINFO("WCV Connected");
-    //gWCV.ShowImage("D:/workspace/Common/Utils/WillowCmdVideo/graphics/screen.jpg");
+    gWCV.ShowImage("D:/workspace/Common/Utils/WillowCmdVideo/graphics/screen.jpg");
     //gC->StartDevice(0, 1);
 }
 
