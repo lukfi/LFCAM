@@ -45,9 +45,10 @@ int main(int argc, char* argv[])
 #ifdef WCV_INPLACE
     QApplication a(argc, argv);
     ImageWindow gWin;
-#endif
-
+    VideoController gController(gWin);
+#else
     VideoController gController;
+#endif
     RequestHandler gHandler(gController);
     BasicWebServer gServer(8080, BasicWebServer::NO_Server, &gHandler);
 

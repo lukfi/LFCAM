@@ -58,15 +58,27 @@ void VideoController::MyUniDecoder::OnFrame(std::shared_ptr<LF::graphic::RawImag
         ri->SetRealResolution(mWidth, mHeight);
     }
     SINFO("Got image %d x %d", ri.GetWidth(), ri.GetHeight());
-
+#ifdef WCV_INPLACE
+    gC->mWin.NewPicture(*ri);
+#else
     gWCV.ShowImage(*ri);
+#endif
 }
 
-VideoController::VideoController()
+VideoController::VideoController(
+#ifdef WCV_INPLACE
+    ImageWindow& win) : mWin(win)
+#else
+    )
+#endif
 {
     gC = this;
+#ifdef WCV_INPLACE
+#else
     CONNECT(gWCV.CONNECTED, OnWCVConnected);
     gWCV.Start(true);
+#endif
+    mThread.Start();
 }
 
 std::string VideoController::GetAllDevicesInfo() const
@@ -113,7 +125,12 @@ bool VideoController::CurrentlyRunning(int& deviceId, int& formatId) const
 
 void VideoController::OnNewFrame(LF::video::VideoDevice* dev, std::shared_ptr<LF::graphic::RawDataContainer> data, uint32_t dataSize, uint32_t width, uint32_t height, LF::graphic::ColorSpace_t colorspace)
 {
-    mDecoder->FeedRawData(data->Get(), data->GetSize());
+    //SDEB("OnNewFrame");
+    //std::cout << ".";
+    if (mDecoder)
+    {
+        mDecoder->FeedRawData(data->Get(), data->GetSize());
+    }
 }
 
 bool VideoController::StopDevice()
@@ -135,17 +152,20 @@ bool VideoController::StopDevice()
 
 bool VideoController::StartDevice(uint32_t devId, uint32_t formatId)
 {
+    SDEB("StartDevice id: %d format: %d", devId, formatId);
     bool ret = false;
     std::lock_guard<std::mutex> lock(mDeviceMutex);
     if (!mDevice)
     {
-        mDevice = std::shared_ptr<LF::video::VideoDevice>(LF::video::VideoDevice::GetVideoDevice(devId, formatId));
+        LF::video::VideoDevice* dev = LF::video::VideoDevice::GetVideoDevice(devId, formatId);
+        mDevice = std::shared_ptr<LF::video::VideoDevice>(dev);
         if (mDevice)
         {
             mDecoder = MyUniDecoder::Get(mDevice->GetConfiguredFormat().colorspace, mDevice->GetConfiguredFormat().resolution.width, mDevice->GetConfiguredFormat().resolution.height);
             CONNECT(mDevice->NEW_FRAME_AVAILABLE_RAW, VideoController, OnNewFrame);
             if (mDevice->Start())
             {
+                mThread.RegisterWaitable(dev);
                 mRunningDeviceID = devId;
                 mRunningFormatID = formatId;
             }

@@ -36,11 +36,11 @@ SOURCES += \
 
 !android {
     CONFIG(debug, debug|release) {
-        DESTDIR = $$PWD/../CommonLibs/debug
+        #DESTDIR = $$PWD/../CommonLibs/debug
         LIBS += -L$$PWD/../CommonLibs/debug -lSystem -lMultimedia
         LIBS += -L$$PWD/../CommonLibs/debug/codecs -lH264Decoder
     } else {
-        DESTDIR = $$PWD/../CommonLibs/release
+        #DESTDIR = $$PWD/../CommonLibs/release
         LIBS += -L$$PWD/../CommonLibs/release -lSystem -lMultimedia
         LIBS += -L$$PWD/../CommonLibs/release/codecs -lH264Decoder
     }
