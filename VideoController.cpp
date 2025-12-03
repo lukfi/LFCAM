@@ -1,11 +1,9 @@
 #include "VideoController.h"
 #include "utils/json.h"
 
-
+#ifndef WCV_INPLACE
 #include "../Common/Utils/WillowCmdVideo/wcvclientlite.h"
 WCVClient gWCV("D:/workspace/Common/Utils/WillowCmdVideo/x64/Release/WillowCmdVideo.exe");
-
-VideoController* gC = nullptr;
 
 void OnWCVConnected()
 {
@@ -13,6 +11,9 @@ void OnWCVConnected()
     gWCV.ShowImage("D:/workspace/Common/Utils/WillowCmdVideo/graphics/screen.jpg");
     //gC->StartDevice(0, 1);
 }
+#endif
+
+VideoController* gC = nullptr;
 
 /********** DEBUG SETUP **********/
 #define ENABLE_SDEBUG

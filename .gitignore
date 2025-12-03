@@ -2,3 +2,6 @@
 .vs/*
 x64/*
 LFCAM/x64/*
+build/*
+
+LFCAM.pro.user
