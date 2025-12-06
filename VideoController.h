@@ -5,7 +5,10 @@
 #include <string>
 #include <mutex>
 #include "UniDecoder.h"
+
+#ifdef WCV_INPLACE
 #include "imagewindow.h"
+#endif
 
 class VideoController
 {
