@@ -130,7 +130,8 @@ int main(int argc, char* argv[])
 #ifdef WCV_INPLACE
     gWin.show();
     a.exec();
+    std::cout << "exiting";
+    t.StopLater();
 #endif
-
     t.Join();
 }

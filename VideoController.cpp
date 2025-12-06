@@ -32,7 +32,7 @@ std::shared_ptr<VideoController::MyUniDecoder> VideoController::MyUniDecoder::Ge
         return ret;
     }
     else if (inputColorspace == LF::graphic::ColorSpace_t::NV12 ||
-        inputColorspace == LF::graphic::ColorSpace_t::YUYV422)
+             inputColorspace == LF::graphic::ColorSpace_t::YUYV422)
     {
         shared_ptr<MyUniDecoder> ret(new MyUniDecoder(inputColorspace));
         ret->Configure(width, height, inputColorspace);
